@@ -24,6 +24,8 @@ go env
 - GOOS
 - GOARCH
 
+https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63
+
 ## Go format
 
 - Tabs for indentation
@@ -86,8 +88,6 @@ s := []int {1, 2, ,3, 4 , 5}
 s = append(s, 6)
 ```
 
-#### len() and cap()
-
 ### Type conversion
 
 newVar := Type(variable)
@@ -104,5 +104,101 @@ p = &i
 // Dereferring
 *p = 21
 s := i+*p
+```
+
+## Loops
+
+```
+// typical loop
+for i:=0; i < 100; i++ {}
+
+// while sum<100 equivalent
+for sum < 100 {}
+
+// infinite loop
+for {}
+
+// loop array for-each
+for i, v := range myList {}
+```
+
+## Conditionals
+
+### if
+```
+if i<10 {
+
+} else {
+
+}
+```
+
+#### if scope
+
+```
+if err := DoSomething(); err != nil {
+    fmt.Println(err)
+}
+```
+
+### switch
+```
+        switch os := runtime.GOOS; os {
+        case "darwin":
+            fmt.Println("OS X.")
+        case "linux":
+            fmt.Println("Linux.")
+        default:
+            // freebsd, openbsd,
+            // plan9, windows...
+            fmt.Printf("%s.\n", os)
+        }
+```
+
+## Functions
+
+```
+func swap1(x, y string) (string, string) {
+	return y, x
+}
+
+func swap2(x, y string) (a, b string) {
+	a = y
+    b = x
+	return
+}
+```
+
+## Methods
+
+### Pointer vs Value receivers
+
+```
+func (p Coordinates) Abs() float64 {}
+func (p *Coordinates) Add(a Coordinates) {}
+```
+
+## Interfaces
+
+```
+type Abser interface {
+    Abs() float64 
+}
+```
+
+### Stringer
+
+```
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) String() string {
+	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+a := Person{"Arthur Dent", 42}
+fmt.Println(a)
 ```
 
